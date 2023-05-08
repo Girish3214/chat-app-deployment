@@ -42,7 +42,9 @@ if (process.env.ENVIRONMENT === "develpment") {
   app.use(express.static(path.join(__dirName1, "../client/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirName1, "client", "dist", "index.html"));
+    res.sendFile(
+      path.resolve(__dirName1, "../", "client", "dist", "index.html")
+    );
   });
 }
 
