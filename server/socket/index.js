@@ -1,0 +1,50 @@
+let onlineUsers = [];
+const startSocket = (io) => {
+  if (io) {
+    io.on("connection", (socket) => {
+      console.log("server is running in ", socket.id);
+
+      // add user when they are online
+      socket.on("addNewUser", (userId) => {
+        const isAlreadyOnline = onlineUsers.some(
+          (user) => user.userId === userId
+        );
+        onlineUsers.push({
+          userId,
+          socketId: socket.id,
+          lastSeen: isAlreadyOnline ? "online" : new Date(),
+        });
+        io.emit("getOnlineUsers", onlineUsers);
+      });
+
+      // add message
+      socket.on("sendMessage", (message) => {
+        const user = onlineUsers.find(
+          (user) => user.userId === message.receiverId
+        );
+        if (user) {
+          io.to(user.socketId).emit("getMessage", message);
+          io.to(user.socketId).emit("getNotification", {
+            senderId: message.senderId,
+            isRead: false,
+            date: new Date(),
+          });
+        }
+      });
+
+      socket.on("joinChat", (room) => {
+        socket.join(room);
+        console.log("user joined chat", room);
+      });
+      socket.on("typing", (room) => socket.in(room).emit("typing"));
+      socket.on("stop-typing", (room) => socket.in(room).emit("stop-typing"));
+
+      socket.on("disconnect", () => {
+        onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+        io.emit("getOnlineUsers", onlineUsers);
+      });
+    });
+  }
+};
+
+export default startSocket;

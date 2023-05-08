@@ -1,0 +1,73 @@
+.modal_overlay_container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6) 0% 0% no-repeat padding-box;
+  z-index: 1000;
+  transition: all 1s ease-in-out;
+}
+.modal_style {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+  max-height: 90vh;
+  border-radius: 16px 16px 0px 0px;
+  transition: all 2s ease-in-out;
+  animation: slide-bottom 1s;
+  z-index: 1000;
+  top: 70px;
+}
+.dialog_content {
+}
+.dialog_content .image_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.dialog_content .text_container {
+  display: flex;
+  flex-direction: column;
+}
+.text_container h5 {
+  font: normal normal bold 20px/36px Roboto;
+  letter-spacing: 0px;
+  color: rgba(8, 0, 67, 1);
+  opacity: 1;
+}
+.text_container span {
+  font: normal normal normal 14px/18px Roboto;
+  letter-spacing: 0px;
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+}
+.dialog_content .button_container {
+  display: flex;
+}
+
+.modal_close_container {
+  position: fixed;
+  bottom: 10px;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.modal_close_container div {
+  width: 30px;
+
+  height: 30px;
+  background: rgba(72, 112, 223, 1) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+}
