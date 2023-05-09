@@ -63,12 +63,7 @@ const SetAvatar = () => {
       });
 
       setIsLoading(false);
-      if (avatar.statusText === "OK") {
-        localStorage.removeItem("user");
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ ...user, avatar: avatar.data.avatar })
-        );
+      if (avatar.status === 200) {
         setAvatarUser({ ...user, avatar: avatar.data.avatar });
         navigate("/");
       } else {

@@ -65,7 +65,7 @@ const AppAuthProvider = ({ children }) => {
 
   const setAvatarUser = useCallback((data) => {
     localStorage.removeItem("user");
-    localStorage.setItem("user", data);
+    localStorage.setItem("user", JSON.stringify(data));
     setUser(data);
   }, []);
 

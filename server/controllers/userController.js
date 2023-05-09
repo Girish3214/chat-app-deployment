@@ -91,7 +91,7 @@ const setAvatar = async (req, res) => {
 
     { new: true }
   ).select("-password");
-  res.status(200).send({ statusText: "OK", avatar: user.avatar });
+  res.status(200).send({ avatar: user.avatar });
 };
 
 export { registerUser, loginUser, getSingleUser, getAllUsers, setAvatar };
